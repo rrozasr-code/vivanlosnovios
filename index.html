@@ -154,7 +154,7 @@
     <button class="nav-tab" onclick="showSection('proveedores')">Para Proveedores</button>
   </div>
   <div style="display:flex;align-items:center;gap:0.5rem">
-    <button class="nav-cta hidden-mobile" onclick="document.getElementById('emailCapture').scrollIntoView({behavior:'smooth'})">Quiero saber más</button>
+    <button class="nav-cta hidden-mobile" onclick="irANotificacion()">Quiero saber más</button>
     <button class="hamburger" onclick="toggleMobileMenu()" id="hamburgerBtn">☰</button>
   </div>
 </nav>
@@ -165,7 +165,7 @@
     <button onclick="showSection('home');toggleMobileMenu()" style="padding:0.75rem 1rem;border-radius:12px;border:none;background:transparent;color:var(--body);font-size:1rem;cursor:pointer;text-align:left;font-family:'Inter',sans-serif">🏠 Inicio</button>
     <button onclick="showSection('novios');toggleMobileMenu()" style="padding:0.75rem 1rem;border-radius:12px;border:none;background:transparent;color:var(--body);font-size:1rem;cursor:pointer;text-align:left;font-family:'Inter',sans-serif">💑 Para Novios</button>
     <button onclick="showSection('proveedores');toggleMobileMenu()" style="padding:0.75rem 1rem;border-radius:12px;border:none;background:transparent;color:var(--body);font-size:1rem;cursor:pointer;text-align:left;font-family:'Inter',sans-serif">🏢 Para Proveedores</button>
-    <button onclick="document.getElementById('emailCapture').scrollIntoView({behavior:'smooth'});toggleMobileMenu()" style="padding:0.75rem 1rem;border-radius:12px;border:none;background:var(--rose);color:white;font-size:1rem;cursor:pointer;font-family:'Inter',sans-serif;font-weight:500;margin-top:0.25rem">Quiero saber más</button>
+    <button onclick="irANotificacion();toggleMobileMenu()" style="padding:0.75rem 1rem;border-radius:12px;border:none;background:var(--rose);color:white;font-size:1rem;cursor:pointer;font-family:'Inter',sans-serif;font-weight:500;margin-top:0.25rem">Quiero saber más</button>
   </div>
 </div>
 
@@ -439,6 +439,14 @@
 
   document.getElementById('year').textContent = new Date().getFullYear();
 
+  function irANotificacion() {
+    showSection('home');
+    setTimeout(function() {
+      var el = document.getElementById('emailCapture');
+      if (el) el.scrollIntoView({behavior:'smooth'});
+    }, 400);
+  }
+
   function toggleMobileMenu() {
     var menu = document.getElementById('mobileMenu');
     var btn = document.getElementById('hamburgerBtn');
@@ -527,6 +535,14 @@
   const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyEpGfqk8uyganuoQEAcL26h_C-UrRmnNQTs6JS8to11MYGx_OkToUhpEzFDkYSPwna/exec';
 
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  function irANotificacion() {
+    showSection('home');
+    setTimeout(function() {
+      var el = document.getElementById('emailCapture');
+      if (el) el.scrollIntoView({behavior:'smooth'});
+    }, 400);
+  }
 
   function toggleMobileMenu() {
     const menu = document.getElementById('mobileMenu');
