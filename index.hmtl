@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vivan los Novios — Próximamente</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --rose:#c8504a;--rose-light:#f5e8e7;--rose-mid:#e8706a;
+      --gold:#b8924a;--gold-light:#f7f0e4;
+      --dark:#1a1410;--body:#3d2f28;--muted:#8a7060;
+      --cream:#fdf8f3;--white:#ffffff;
+      --border:rgba(184,146,74,0.2);
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--body);line-height:1.6}
+
+    nav{
+      position:sticky;top:0;z-index:100;background:rgba(253,248,243,0.95);
+      backdrop-filter:blur(8px);border-bottom:1px solid var(--border);
+      padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:60px;
+    }
+    .nav-logo{display:flex;align-items:center;gap:10px;font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--dark);text-decoration:none}
+    .nav-tabs{display:flex;gap:0.25rem}
+    .nav-tab{padding:0.4rem 1rem;border-radius:20px;font-size:0.85rem;font-weight:500;border:none;cursor:pointer;transition:all 0.2s;background:transparent;color:var(--muted)}
+    .nav-tab.active,.nav-tab:hover{background:var(--rose-light);color:var(--rose)}
+    .nav-cta{padding:0.45rem 1.25rem;background:var(--rose);color:white;border:none;border-radius:20px;font-size:0.85rem;font-weight:500;cursor:pointer;transition:background 0.2s}
+    .nav-cta:hover{background:var(--dark)}
+
+    .section{display:none;animation:fadeIn 0.35s ease}
+    .section.active{display:block}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+    .hero{min-height:88vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;background:radial-gradient(ellipse at 30% 40%,rgba(200,80,74,0.07) 0%,transparent 55%),radial-gradient(ellipse at 70% 60%,rgba(184,146,74,0.07) 0%,transparent 55%)}
+    .badge{display:inline-flex;align-items:center;gap:6px;background:var(--rose-light);color:var(--rose);border:1px solid rgba(200,80,74,0.2);font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;padding:0.35rem 1rem;border-radius:999px;margin-bottom:1.5rem}
+    .hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,7vw,5.5rem);font-weight:700;line-height:1.05;color:var(--dark);margin-bottom:1.25rem}
+    .hero h1 em{font-style:italic;color:var(--rose)}
+    .hero p{font-size:clamp(1rem,2vw,1.15rem);color:var(--muted);font-weight:300;max-width:500px;margin:0 auto 2.5rem}
+    .hero-btns{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-bottom:1rem}
+    .btn-primary{padding:0.85rem 2rem;background:var(--rose);color:white;border:none;border-radius:12px;font-size:1rem;font-weight:500;cursor:pointer;transition:all 0.2s}
+    .btn-primary:hover{background:var(--dark);transform:translateY(-1px)}
+    .btn-secondary{padding:0.85rem 2rem;background:transparent;color:var(--dark);border:1.5px solid rgba(26,20,16,0.2);border-radius:12px;font-size:1rem;font-weight:500;cursor:pointer;transition:all 0.2s}
+    .btn-secondary:hover{border-color:var(--rose);color:var(--rose)}
+    .coming-tag{display:inline-flex;align-items:center;gap:6px;background:var(--gold-light);color:var(--gold);border:1px solid rgba(184,146,74,0.25);font-size:0.78rem;font-weight:500;padding:0.35rem 1rem;border-radius:999px;margin-top:0.5rem}
+
+    .content{max-width:1080px;margin:0 auto;padding:4rem 2rem}
+    .section-label{display:inline-block;background:var(--rose-light);color:var(--rose);font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;padding:0.3rem 0.9rem;border-radius:999px;margin-bottom:1rem}
+    .section-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:700;color:var(--dark);margin-bottom:0.75rem}
+    .section-sub{font-size:1rem;color:var(--muted);font-weight:300;max-width:560px;margin-bottom:3rem;line-height:1.7}
+
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem}
+    .card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:1.75rem;transition:transform 0.2s,box-shadow 0.2s;position:relative;overflow:hidden}
+    .card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,var(--rose),var(--gold));transform:scaleX(0);transform-origin:left;transition:transform 0.3s}
+    .card:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(26,20,16,0.07)}
+    .card:hover::before{transform:scaleX(1)}
+    .card-icon{font-size:1.75rem;margin-bottom:0.75rem;display:block}
+    .card h3{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:500;color:var(--dark);margin-bottom:0.5rem}
+    .card p{font-size:0.875rem;color:var(--muted);line-height:1.65;font-weight:300}
+
+    .divider{display:flex;align-items:center;gap:1rem;margin:3.5rem 0}
+    .divider-line{flex:1;height:1px;background:var(--border)}
+    .divider-ornament{color:var(--gold);font-size:1.2rem;opacity:0.6}
+
+    .plans-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.25rem;margin-bottom:3rem}
+    .plan-card{border:1.5px solid var(--border);border-radius:16px;padding:2rem 1.5rem;text-align:center;background:var(--white);transition:transform 0.2s}
+    .plan-card:hover{transform:translateY(-3px)}
+    .plan-card.featured{border-color:var(--rose);background:var(--rose-light)}
+    .plan-badge-label{font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem}
+    .plan-card.featured .plan-badge-label{color:var(--rose)}
+    .plan-name{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--dark);margin-bottom:0.25rem}
+    .plan-price{font-size:2rem;font-weight:700;color:var(--rose);line-height:1}
+    .plan-period{font-size:0.78rem;color:var(--muted);margin:0.25rem 0 0.75rem}
+    .plan-free{font-size:0.8rem;color:#2d7a4a;font-weight:500;background:#eaf5ef;border-radius:999px;padding:0.3rem 0.8rem;display:inline-block}
+
+    .gracia-box{background:linear-gradient(135deg,#1a1410 0%,#3d2020 100%);border-radius:20px;padding:2.5rem;color:white;margin:3rem 0}
+    .gracia-box h3{font-family:'Playfair Display',serif;font-size:1.6rem;margin-bottom:1rem}
+    .gracia-box p{color:rgba(255,255,255,0.75);font-weight:300;line-height:1.75;margin-bottom:1.25rem}
+    .gracia-steps{display:flex;flex-direction:column;gap:0.75rem}
+    .gracia-step{display:flex;align-items:flex-start;gap:0.75rem;font-size:0.875rem;color:rgba(255,255,255,0.85)}
+    .gracia-step-num{width:24px;height:24px;border-radius:50%;background:var(--rose);color:white;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;flex-shrink:0;margin-top:1px}
+
+    .email-section{background:var(--white);border:1px solid var(--border);border-radius:20px;padding:3rem 2rem;text-align:center;margin-top:3rem}
+    .email-section h3{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--dark);margin-bottom:0.75rem}
+    .email-section p{color:var(--muted);font-weight:300;margin-bottom:2rem;font-size:0.95rem}
+    .email-form{display:flex;gap:0.75rem;max-width:440px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+    .email-form input{flex:1;min-width:200px;padding:0.85rem 1.25rem;border:1.5px solid var(--border);border-radius:12px;font-family:'Inter',sans-serif;font-size:0.9rem;color:var(--dark);background:var(--cream);outline:none;transition:border-color 0.2s}
+    .email-form input:focus{border-color:var(--rose)}
+    .email-form input::placeholder{color:#c0a898}
+    .btn-notify{padding:0.85rem 1.75rem;background:var(--rose);color:white;border:none;border-radius:12px;font-size:0.9rem;font-weight:500;cursor:pointer;white-space:nowrap;transition:background 0.2s}
+    .btn-notify:hover{background:var(--dark)}
+    .btn-notify:disabled{opacity:0.6;cursor:not-allowed}
+    .success-msg{display:none;color:#2d7a4a;font-size:0.9rem;margin-top:0.75rem;font-weight:500;background:#eaf5ef;padding:0.5rem 1rem;border-radius:8px;display:none}
+    .form-note{font-size:0.75rem;color:var(--muted);margin-top:0.75rem}
+
+    /* FORM PROVEEDOR */
+    .preregister-form{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:24px;padding:2.5rem;max-width:680px;margin:0 auto}
+    .preregister-form h3{font-family:'Playfair Display',serif;font-size:1.6rem;text-align:center;margin-bottom:0.5rem;color:white}
+    .preregister-form .form-sub{text-align:center;color:rgba(255,255,255,0.6);font-size:0.9rem;margin-bottom:2rem;font-weight:300}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    .form-group{display:flex;flex-direction:column;gap:0.4rem}
+    .form-group.full{grid-column:1 / -1}
+    .form-group label{font-size:0.78rem;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.5)}
+    .form-group input,.form-group select,.form-group textarea{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:10px;padding:0.75rem 1rem;color:white;font-family:'Inter',sans-serif;font-size:0.9rem;outline:none;transition:border-color 0.2s}
+    .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--rose)}
+    .form-group input::placeholder,.form-group textarea::placeholder{color:rgba(255,255,255,0.3)}
+    .form-group select option{background:#2c1f1a;color:white}
+    .form-group textarea{resize:vertical;min-height:80px}
+    .btn-submit{width:100%;margin-top:1.5rem;padding:1rem;background:linear-gradient(135deg,var(--rose),#c9505a);color:white;border:none;border-radius:12px;font-family:'Inter',sans-serif;font-size:1rem;font-weight:500;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s}
+    .btn-submit:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(232,112,106,0.4)}
+    .btn-submit:disabled{opacity:0.6;cursor:not-allowed;transform:none}
+    .form-note-dark{text-align:center;color:rgba(255,255,255,0.4);font-size:0.78rem;margin-top:0.75rem}
+    .success-box{display:none;text-align:center;padding:2rem}
+    .success-box h3{font-family:'Playfair Display',serif;font-size:1.8rem;margin-bottom:0.75rem;color:white}
+    .success-box p{color:rgba(255,255,255,0.7);font-weight:300}
+
+    footer{text-align:center;padding:2.5rem 2rem;border-top:1px solid var(--border);margin-top:2rem}
+    footer p{color:var(--muted);font-size:0.85rem;font-weight:300}
+    .heart{color:var(--rose)}
+
+    .providers-section{padding:5rem 2rem;background:linear-gradient(135deg,#1a1410 0%,#3d2020 100%);color:white}
+    .providers-inner{max-width:1080px;margin:0 auto}
+    .providers-header{text-align:center;margin-bottom:3rem}
+    .providers-header h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,3rem);margin-bottom:1rem}
+    .providers-header p{color:rgba(255,255,255,0.7);font-weight:300;font-size:1.05rem;max-width:580px;margin:0 auto;line-height:1.7}
+    .benefits-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.25rem;margin-bottom:3rem}
+    .benefit-item{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:1.25rem 1.5rem;display:flex;align-items:flex-start;gap:0.75rem}
+    .benefit-icon{font-size:1.5rem;flex-shrink:0}
+    .benefit-text{font-size:0.85rem;color:rgba(255,255,255,0.8);line-height:1.55}
+    .benefit-text strong{color:white;display:block;margin-bottom:0.2rem;font-size:0.92rem}
+
+    @media(max-width:600px){nav{padding:0 1rem}.nav-tabs{display:none}.hero{padding:3rem 1.25rem}.content{padding:2.5rem 1.25rem}.gracia-box{padding:1.75rem 1.25rem}.form-grid{grid-template-columns:1fr}.providers-section{padding:3rem 1.25rem}.preregister-form{padding:1.75rem 1.25rem}}
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">
+    <svg width="28" height="20" viewBox="0 0 120 80" fill="none">
+      <circle cx="40" cy="40" r="28" stroke="#c8504a" stroke-width="7" fill="none"/>
+      <circle cx="80" cy="40" r="28" stroke="#b8924a" stroke-width="7" fill="none"/>
+    </svg>
+    Vivan los Novios
+  </a>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showSection('home')">Inicio</button>
+    <button class="nav-tab" onclick="showSection('novios')">Para Novios</button>
+    <button class="nav-tab" onclick="showSection('proveedores')">Para Proveedores</button>
+  </div>
+  <button class="nav-cta" onclick="document.getElementById('emailCapture').scrollIntoView({behavior:'smooth'})">Quiero saber más</button>
+</nav>
+
+<!-- HOME -->
+<div id="home" class="section active">
+  <div class="hero">
+    <div class="badge">✦ Próximamente en 2026 ✦</div>
+    <h1>La plataforma que<br/>tu boda <em>merece</em></h1>
+    <p>Todo lo que necesitas para organizar el día más importante de tu vida, en un solo lugar. Gratis para novios. Con los mejores proveedores de Chile.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="showSection('novios')">Soy novio/a — ver más</button>
+      <button class="btn-secondary" onclick="showSection('proveedores')">Soy proveedor</button>
+    </div>
+    <div class="coming-tag">Lanzamiento en los próximos meses de 2026</div>
+  </div>
+
+  <div class="content">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start">
+      <div>
+        <div class="section-label">Para novios</div>
+        <h2 class="section-title" style="font-size:1.6rem">Organiza tu boda sin estrés</h2>
+        <p style="color:var(--muted);font-weight:300;font-size:0.925rem;line-height:1.75;margin-bottom:1.25rem">Invitaciones digitales, confirmación de asistencia, lista de regalos online, editor de mesas, votaciones con invitados, búsqueda de proveedores y mensajes directos. Todo gratis, siempre.</p>
+        <button class="btn-primary" style="font-size:0.875rem;padding:0.7rem 1.5rem" onclick="showSection('novios')">Ver todo para novios →</button>
+      </div>
+      <div>
+        <div class="section-label">Para proveedores</div>
+        <h2 class="section-title" style="font-size:1.6rem">Llega a más parejas</h2>
+        <p style="color:var(--muted);font-weight:300;font-size:0.925rem;line-height:1.75;margin-bottom:1.25rem">Perfil profesional, galería de fotos y videos, paquetes de servicios, mensajes directos, valoraciones de clientes y alertas en tiempo real. Con 30 días gratis al activar cualquier plan.</p>
+        <button class="btn-secondary" style="font-size:0.875rem;padding:0.7rem 1.5rem" onclick="showSection('proveedores')">Ver todo para proveedores →</button>
+      </div>
+    </div>
+
+    <div class="email-section" id="emailCapture" style="margin-top:4rem">
+      <div style="margin-bottom:1rem">
+        <svg width="40" height="28" viewBox="0 0 120 80" fill="none">
+          <circle cx="40" cy="40" r="26" stroke="#c8504a" stroke-width="6" fill="none" opacity="0.6"/>
+          <circle cx="80" cy="40" r="26" stroke="#b8924a" stroke-width="6" fill="none" opacity="0.6"/>
+        </svg>
+      </div>
+      <h3>Sé el primero en saber cuándo abrimos</h3>
+      <p>Déjanos tu correo y te avisaremos en cuanto la plataforma esté disponible.</p>
+      <div class="email-form">
+        <input type="email" id="emailHome" placeholder="tu@correo.cl"/>
+        <button class="btn-notify" id="btnHome" onclick="registrarEmail('emailHome','msgHome','btnHome','novio')">Avisarme</button>
+      </div>
+      <p class="success-msg" id="msgHome"></p>
+      <p class="form-note">Sin spam. Solo te escribimos cuando la plataforma esté lista.</p>
+    </div>
+  </div>
+</div>
+
+<!-- NOVIOS -->
+<div id="novios" class="section">
+  <div class="hero" style="min-height:50vh;padding:3.5rem 2rem">
+    <div class="badge">✦ Para novios — Gratis ✦</div>
+    <h1 style="font-size:clamp(2.2rem,5vw,4rem)">Tu boda,<br/><em>perfectamente organizada</em></h1>
+    <p>Desde las invitaciones hasta el último detalle. Todo en un solo lugar, completamente gratis para las parejas.</p>
+  </div>
+
+  <div class="content">
+    <div class="section-label">Gestión completa</div>
+    <h2 class="section-title">Todo lo que necesitas para tu gran día</h2>
+    <p class="section-sub">Desarrollado pensando en cada detalle de la planificación de una boda en Chile.</p>
+
+    <div class="grid">
+      <div class="card"><span class="card-icon">💌</span><h3>Invitaciones digitales</h3><p>Crea y envía invitaciones personalizadas con el diseño de tu boda. Comparte el link por WhatsApp o redes sociales.</p></div>
+      <div class="card"><span class="card-icon">✅</span><h3>Confirmación de asistencia (RSVP)</h3><p>Tus invitados confirman con un click. Lleva el control de quién asiste, quién no puede y quién trae acompañante.</p></div>
+      <div class="card"><span class="card-icon">🎁</span><h3>Lista de regalos online</h3><p>Agrega los regalos que sueñas. Tus invitados compran directamente desde el link, desde cualquier parte del mundo.</p></div>
+      <div class="card"><span class="card-icon">🪑</span><h3>Editor de mesas visual</h3><p>Distribuye a tus invitados arrastrando y soltando. Ve en tiempo real cómo quedará el salón. Incluye acompañantes con nombre.</p></div>
+      <div class="card"><span class="card-icon">🗳️</span><h3>Votaciones para invitados</h3><p>Deja que tus invitados elijan la música, el menú o la decoración. Comparte la votación y ve los resultados en vivo.</p></div>
+      <div class="card"><span class="card-icon">🔍</span><h3>Catálogo de proveedores</h3><p>Busca fotógrafos, banqueteros, decoradores y más. Filtra por categoría, ciudad y precio. Lee reseñas reales de parejas.</p></div>
+      <div class="card"><span class="card-icon">💬</span><h3>Mensajes con proveedores</h3><p>Contacta directamente a cada proveedor desde la plataforma. Historial de conversaciones organizado en un solo lugar.</p></div>
+      <div class="card"><span class="card-icon">❤️</span><h3>Favoritos</h3><p>Guarda los proveedores que más te gustan y compara antes de decidir. Accede a tu lista en cualquier momento.</p></div>
+      <div class="card"><span class="card-icon">🔔</span><h3>Notificaciones en tiempo real</h3><p>Recibe alertas cuando un proveedor responde tu mensaje, cuando llega un nuevo RSVP o cuando alguien regala algo.</p></div>
+    </div>
+
+    <div class="divider"><div class="divider-line"></div><div class="divider-ornament">◇</div><div class="divider-line"></div></div>
+
+    <div style="background:var(--rose-light);border-radius:16px;padding:2rem;border:1px solid rgba(200,80,74,0.15);text-align:center">
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--dark);margin-bottom:0.5rem">100% gratis para novios, siempre</h3>
+      <p style="color:var(--muted);font-weight:300;font-size:0.9rem;max-width:480px;margin:0 auto">No hay planes de pago para parejas. Todo el portal está disponible sin costo para organizar tu boda.</p>
+    </div>
+
+    <div class="email-section" style="margin-top:3rem">
+      <h3>¿Quieres que te avisemos cuando abramos?</h3>
+      <p>Déjanos tu correo y serás de los primeros en acceder cuando la plataforma esté lista.</p>
+      <div class="email-form">
+        <input type="email" id="emailNovios" placeholder="tu@correo.cl"/>
+        <button class="btn-notify" id="btnNovios" onclick="registrarEmail('emailNovios','msgNovios','btnNovios','novio')">Avisarme</button>
+      </div>
+      <p class="success-msg" id="msgNovios"></p>
+      <p class="form-note">Sin spam. Solo te escribimos cuando la plataforma esté lista.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PROVEEDORES -->
+<div id="proveedores" class="section">
+  <div class="hero" style="min-height:50vh;padding:3.5rem 2rem">
+    <div class="badge">✦ Para proveedores ✦</div>
+    <h1 style="font-size:clamp(2.2rem,5vw,4rem)">Más clientes,<br/><em>menos esfuerzo</em></h1>
+    <p>Crea tu perfil profesional y conecta con cientos de parejas que buscan exactamente lo que ofreces. Lanzamiento en los próximos meses de 2026.</p>
+  </div>
+
+  <div class="content">
+    <div class="gracia-box">
+      <h3>30 días gratis — acumulables con tu plan</h3>
+      <p>Al ser aprobado como proveedor, todos los planes incluyen 30 días de acceso gratuito. Esos días se suman a los meses contratados, no los pierdes.</p>
+      <div class="gracia-steps">
+        <div class="gracia-step"><div class="gracia-step-num">1</div><div>Te registras y completas tu perfil mientras esperas aprobación.</div></div>
+        <div class="gracia-step"><div class="gracia-step-num">2</div><div>Al ser aprobado, obtienes 30 días gratis automáticamente. Sin tarjeta.</div></div>
+        <div class="gracia-step"><div class="gracia-step-num">3</div><div>Cuando activas un plan, los 30 días se suman al período contratado.</div></div>
+        <div class="gracia-step"><div class="gracia-step-num">4</div><div>Apareces en el catálogo y empiezas a recibir consultas de parejas.</div></div>
+      </div>
+    </div>
+
+    <div class="section-label">Planes</div>
+    <h2 class="section-title">Elige el plan que más te acomoda</h2>
+    <p class="section-sub">Todos los planes incluyen las mismas funcionalidades. La diferencia es solo la duración.</p>
+    <div class="plans-grid">
+      <div class="plan-card">
+        <div class="plan-badge-label">Mensual</div>
+        <div class="plan-name">Básico</div>
+        <div class="plan-price">$25.000</div>
+        <div class="plan-period">por mes</div>
+        <div class="plan-free">+ 30 días gratis al inicio</div>
+      </div>
+      <div class="plan-card featured">
+        <div class="plan-badge-label">Más elegido</div>
+        <div class="plan-name">Semestral</div>
+        <div class="plan-price">$130.000</div>
+        <div class="plan-period">6 meses · ahorra 13%</div>
+        <div class="plan-free">+ 30 días gratis al inicio</div>
+      </div>
+      <div class="plan-card">
+        <div class="plan-badge-label">Mejor valor</div>
+        <div class="plan-name">Anual</div>
+        <div class="plan-price">$220.000</div>
+        <div class="plan-period">12 meses · ahorra 27%</div>
+        <div class="plan-free">+ 30 días gratis al inicio</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Beneficios + Formulario sobre fondo oscuro -->
+  <div class="providers-section">
+    <div class="providers-inner">
+      <div class="providers-header">
+        <div style="margin-bottom:1rem"><span style="background:rgba(201,169,110,0.2);border:1px solid rgba(201,169,110,0.4);color:#c9a96e;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;padding:0.4rem 1.2rem;border-radius:999px;">✦ Funcionalidades incluidas ✦</span></div>
+        <h2>Todo lo que incluye tu perfil</h2>
+        <p style="margin-top:0.75rem">Herramientas diseñadas para que destaquen entre cientos de parejas buscando al proveedor perfecto.</p>
+      </div>
+
+      <div class="benefits-grid">
+        <div class="benefit-item"><span class="benefit-icon">📋</span><div class="benefit-text"><strong>Perfil completo</strong>Nombre, descripción, categoría, región, ciudad, sitio web, Instagram, Facebook y WhatsApp.</div></div>
+        <div class="benefit-item"><span class="benefit-icon">📸</span><div class="benefit-text"><strong>Hasta 30 fotografías</strong>Galería profesional que enamora a las parejas y muestra tu mejor trabajo.</div></div>
+        <div class="benefit-item"><span class="benefit-icon">🎬</span><div class="benefit-text"><strong>Hasta 3 videos</strong>Comparte videos de tus trabajos para generar confianza y diferenciarte.</div></div>
+        <div class="benefit-item"><span class="benefit-icon">💼</span><div class="benefit-text"><strong>Paquetes ilimitados</strong>Crea todos los paquetes que necesitas con nombre, precio, descripción e ítems incluidos.</div></div>
+        <div class="benefit-item"><span class="benefit-icon">💬</span><div class="benefit-text"><strong>Chat con parejas</strong>Responde consultas en tiempo real. Historial completo de conversaciones.</div></div>
+        <div class="benefit-item"><span class="benefit-icon">🔔</span><div class="benefit-text"><strong>Alertas en tiempo real</strong>Notificaciones cuando recibes un mensaje o una pareja te agrega a favoritos.</div></div>
+        <div class="benefit-item"><span class="benefit-icon">⭐</span><div class="benefit-text"><strong>Valoraciones y reseñas</strong>Las parejas te califican y tú puedes responder públicamente a cada una.</div></div>
+        <div class="benefit-item"><span class="benefit-icon">❤️</span><div class="benefit-text"><strong>Ver quién te guarda</strong>Sabe cuántas parejas te agregaron a favoritos y cuándo.</div></div>
+        <div class="benefit-item"><span class="benefit-icon">📍</span><div class="benefit-text"><strong>Mapa y ubicación</strong>Aparece en el mapa de tu región para que las parejas te encuentren fácilmente.</div></div>
+        <div class="benefit-item"><span class="benefit-icon">📊</span><div class="benefit-text"><strong>Estadísticas</strong>Cuántas veces vieron tu perfil, mensajes recibidos y parejas que te guardaron.</div></div>
+        <div class="benefit-item"><span class="benefit-icon">💡</span><div class="benefit-text"><strong>Tips para más clientes</strong>Guías para optimizar tu perfil y aumentar las consultas que recibes.</div></div>
+        <div class="benefit-item"><span class="benefit-icon">📊</span><div class="benefit-text"><strong>Panel de administración</strong>Dashboard propio con todas tus métricas, mensajes, galería y paquetes.</div></div>
+      </div>
+
+      <!-- FORMULARIO PREREGISTRO -->
+      <div class="preregister-form" id="formContainer">
+        <h3>Preregistro de proveedor</h3>
+        <p class="form-sub">Completa tus datos y te avisaremos cuando la plataforma esté lista. ¡Sin compromisos!</p>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Nombre del negocio *</label>
+            <input type="text" id="negocio" placeholder="Ej: Fotografía Momentos" required/>
+          </div>
+          <div class="form-group">
+            <label>Nombre de contacto *</label>
+            <input type="text" id="contacto" placeholder="Tu nombre completo" required/>
+          </div>
+          <div class="form-group">
+            <label>Email *</label>
+            <input type="email" id="emailProv" placeholder="tu@correo.cl" required/>
+          </div>
+          <div class="form-group">
+            <label>Teléfono / WhatsApp</label>
+            <input type="tel" id="telefono" placeholder="+56 9 1234 5678"/>
+          </div>
+          <div class="form-group">
+            <label>Categoría *</label>
+            <select id="categoria" required>
+              <option value="" disabled selected>Selecciona tu rubro</option>
+              <option>Fotografía y Video</option>
+              <option>Lugares y Salones</option>
+              <option>Catering y Banquetería</option>
+              <option>Música y Entretenimiento</option>
+              <option>Decoración y Florería</option>
+              <option>Vestidos y Trajes</option>
+              <option>Maquillaje y Peinado</option>
+              <option>Pastelería</option>
+              <option>Invitaciones</option>
+              <option>Transporte</option>
+              <option>Organización de Eventos</option>
+              <option>Otros Servicios</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Región</label>
+            <select id="region">
+              <option value="" disabled selected>Selecciona tu región</option>
+              <option>Región Metropolitana</option>
+              <option>Valparaíso</option>
+              <option>Biobío</option>
+              <option>La Araucanía</option>
+              <option>Los Lagos</option>
+              <option>O'Higgins</option>
+              <option>Maule</option>
+              <option>Coquimbo</option>
+              <option>Antofagasta</option>
+              <option>Atacama</option>
+              <option>Tarapacá</option>
+              <option>Arica y Parinacota</option>
+              <option>Ñuble</option>
+              <option>Los Ríos</option>
+              <option>Aysén</option>
+              <option>Magallanes</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label>Cuéntanos brevemente sobre tu negocio</label>
+            <textarea id="descripcion" placeholder="Describe qué ofreces, años de experiencia, ciudades donde trabajas..."></textarea>
+          </div>
+          <div class="form-group full">
+            <label>Plan de interés</label>
+            <select id="plan">
+              <option value="" disabled selected>¿Qué plan te interesa?</option>
+              <option>Mensual — $25.000/mes</option>
+              <option>Semestral — $130.000 (6 meses)</option>
+              <option>Anual — $220.000 (12 meses)</option>
+              <option>Aún no lo sé</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn-submit" id="btnSubmit" onclick="enviarFormProveedor()">💍 Quiero preregistrarme gratis</button>
+        <p class="form-note-dark">Al preregistrarte no adquieres ningún compromiso de pago. Solo te avisaremos cuando la plataforma esté lista.</p>
+      </div>
+
+      <div class="success-box" id="successBox">
+        <div style="font-size:4rem;margin-bottom:1rem">💍</div>
+        <h3>¡Preregistro exitoso!</h3>
+        <p>Gracias por confiar en Vivan los Novios. Te contactaremos pronto con todos los detalles del lanzamiento.<br/><br/>¡Prepara tus mejores fotos! 📸</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div style="margin-bottom:0.75rem">
+    <svg width="36" height="24" viewBox="0 0 120 80" fill="none">
+      <circle cx="40" cy="40" r="26" stroke="#c8504a" stroke-width="6" fill="none" opacity="0.4"/>
+      <circle cx="80" cy="40" r="26" stroke="#b8924a" stroke-width="6" fill="none" opacity="0.4"/>
+    </svg>
+  </div>
+  <p>Creado con <span class="heart">♥</span> en Chile &nbsp;·&nbsp; Vivan los Novios &nbsp;·&nbsp; <span id="year"></span></p>
+  <p style="margin-top:0.4rem;font-size:0.78rem;opacity:0.6">contacto@vivanlosnovios.cl</p>
+</footer>
+
+<script>
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyEpGfqk8uyganuoQEAcL26h_C-UrRmnNQTs6JS8to11MYGx_OkToUhpEzFDkYSPwna/exec';
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  function showSection(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    const tabs = {home:0,novios:1,proveedores:2};
+    document.querySelectorAll('.nav-tab')[tabs[id]].classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+
+  async function registrarEmail(inputId, msgId, btnId, tipo) {
+    const email = document.getElementById(inputId).value.trim();
+    if (!email || !email.includes('@')) {
+      document.getElementById(inputId).focus();
+      return;
+    }
+    const btn = document.getElementById(btnId);
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+
+    try {
+      await fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({ email, tipo, fecha: new Date().toLocaleString('es-CL') })
+      });
+    } catch(e) {}
+
+    const msg = document.getElementById(msgId);
+    msg.textContent = '¡Anotado! Te avisamos cuando lancemos.';
+    msg.style.display = 'block';
+    document.getElementById(inputId).value = '';
+    document.getElementById(inputId).placeholder = 'Registrado ✓';
+    document.getElementById(inputId).disabled = true;
+    btn.textContent = '✓ Registrado';
+  }
+
+  async function enviarFormProveedor() {
+    const negocio  = document.getElementById('negocio').value.trim();
+    const contacto = document.getElementById('contacto').value.trim();
+    const email    = document.getElementById('emailProv').value.trim();
+    const categoria= document.getElementById('categoria').value;
+
+    if (!negocio || !contacto || !email || !categoria) {
+      alert('Por favor completa los campos obligatorios (*)');
+      return;
+    }
+    if (!email.includes('@')) {
+      alert('Por favor ingresa un email válido');
+      return;
+    }
+
+    const btn = document.getElementById('btnSubmit');
+    btn.disabled = true;
+    btn.textContent = '⏳ Enviando...';
+
+    const datos = {
+      email,
+      tipo: 'proveedor',
+      nombre: contacto,
+      negocio,
+      categoria,
+      region:      document.getElementById('region').value,
+      telefono:    document.getElementById('telefono').value.trim(),
+      plan:        document.getElementById('plan').value,
+      descripcion: document.getElementById('descripcion').value.trim(),
+      fecha:       new Date().toLocaleString('es-CL'),
+    };
+
+    try {
+      await fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify(datos)
+      });
+    } catch(e) {}
+
+    document.getElementById('formContainer').style.display = 'none';
+    const box = document.getElementById('successBox');
+    box.style.display = 'block';
+    box.scrollIntoView({behavior:'smooth', block:'center'});
+  }
+</script>
+</body>
+</html>
