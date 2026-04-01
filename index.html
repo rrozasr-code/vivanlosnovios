@@ -130,7 +130,12 @@
     .benefit-text{font-size:0.85rem;color:rgba(255,255,255,0.8);line-height:1.55}
     .benefit-text strong{color:white;display:block;margin-bottom:0.2rem;font-size:0.92rem}
 
-    @media(max-width:600px){nav{padding:0 1rem}.nav-tabs{display:none}.hero{padding:3rem 1.25rem}.content{padding:2.5rem 1.25rem}.gracia-box{padding:1.75rem 1.25rem}.form-grid{grid-template-columns:1fr}.providers-section{padding:3rem 1.25rem}.preregister-form{padding:1.75rem 1.25rem}}
+    .hamburger{display:none;background:none;border:none;font-size:1.4rem;cursor:pointer;padding:0.25rem;color:var(--dark)}
+    .hidden-mobile{display:inline-flex}
+    @media(max-width:600px){
+    .hamburger{display:block}
+    .hidden-mobile{display:none!important}
+    nav{padding:0 1rem}.nav-tabs{display:none}.hero{padding:3rem 1.25rem}.content{padding:2.5rem 1.25rem}.gracia-box{padding:1.75rem 1.25rem}.form-grid{grid-template-columns:1fr}.providers-section{padding:3rem 1.25rem}.preregister-form{padding:1.75rem 1.25rem}}
   </style>
 </head>
 <body>
@@ -148,8 +153,21 @@
     <button class="nav-tab" onclick="showSection('novios')">Para Novios</button>
     <button class="nav-tab" onclick="showSection('proveedores')">Para Proveedores</button>
   </div>
-  <button class="nav-cta" onclick="document.getElementById('emailCapture').scrollIntoView({behavior:'smooth'})">Quiero saber más</button>
+  <div style="display:flex;align-items:center;gap:0.5rem">
+    <button class="nav-cta hidden-mobile" onclick="document.getElementById('emailCapture').scrollIntoView({behavior:'smooth'})">Quiero saber más</button>
+    <button class="hamburger" onclick="toggleMobileMenu()" id="hamburgerBtn">☰</button>
+  </div>
 </nav>
+
+<!-- MENU MOVIL -->
+<div id="mobileMenu" style="display:none;position:fixed;top:60px;left:0;right:0;z-index:99;background:rgba(253,248,243,0.98);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:1rem;">
+  <div style="display:flex;flex-direction:column;gap:0.5rem;max-width:300px;margin:0 auto">
+    <button onclick="showSection('home');toggleMobileMenu()" style="padding:0.75rem 1rem;border-radius:12px;border:none;background:transparent;color:var(--body);font-size:1rem;cursor:pointer;text-align:left;font-family:'Inter',sans-serif">🏠 Inicio</button>
+    <button onclick="showSection('novios');toggleMobileMenu()" style="padding:0.75rem 1rem;border-radius:12px;border:none;background:transparent;color:var(--body);font-size:1rem;cursor:pointer;text-align:left;font-family:'Inter',sans-serif">💑 Para Novios</button>
+    <button onclick="showSection('proveedores');toggleMobileMenu()" style="padding:0.75rem 1rem;border-radius:12px;border:none;background:transparent;color:var(--body);font-size:1rem;cursor:pointer;text-align:left;font-family:'Inter',sans-serif">🏢 Para Proveedores</button>
+    <button onclick="document.getElementById('emailCapture').scrollIntoView({behavior:'smooth'});toggleMobileMenu()" style="padding:0.75rem 1rem;border-radius:12px;border:none;background:var(--rose);color:white;font-size:1rem;cursor:pointer;font-family:'Inter',sans-serif;font-weight:500;margin-top:0.25rem">Quiero saber más</button>
+  </div>
+</div>
 
 <!-- HOME -->
 <div id="home" class="section active">
@@ -412,14 +430,26 @@
       <circle cx="80" cy="40" r="26" stroke="#b8924a" stroke-width="6" fill="none" opacity="0.4"/>
     </svg>
   </div>
-  <p>Creado por MAJO <span class="heart">♥</span> en Chile &nbsp;·&nbsp; Vivan los Novios &nbsp;·&nbsp; <span id="year"></span></p>
-  <p style="margin-top:0.4rem;font-size:0.78rem;opacity:0.6">contacto@vivanlosnovios.cl</p>
+  <p>Creado con <span class="heart">♥</span> en Chile &nbsp;·&nbsp; Vivan los Novios &nbsp;·&nbsp; <span id="year"></span></p>
+  <p style="margin-top:0.4rem;font-size:0.78rem;opacity:0.6"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f0939f9e849193849fb0869986919e9c9f839e9f86999f83de939c">[email&#160;protected]</a></p>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyEpGfqk8uyganuoQEAcL26h_C-UrRmnNQTs6JS8to11MYGx_OkToUhpEzFDkYSPwna/exec';
 
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  function toggleMobileMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const btn = document.getElementById('hamburgerBtn');
+    if (menu.style.display === 'none') {
+      menu.style.display = 'block';
+      btn.textContent = '✕';
+    } else {
+      menu.style.display = 'none';
+      btn.textContent = '☰';
+    }
+  }
 
   function showSection(id) {
     document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
@@ -485,6 +515,7 @@
       categoria,
       region:      document.getElementById('region').value,
       telefono:    document.getElementById('telefono').value.trim(),
+      plan:        document.getElementById('plan').value,
       descripcion: document.getElementById('descripcion').value.trim(),
       fecha:       new Date().toLocaleString('es-CL'),
     };
@@ -498,11 +529,4 @@
       });
     } catch(e) {}
 
-    document.getElementById('formContainer').style.display = 'none';
-    const box = document.getElementById('successBox');
-    box.style.display = 'block';
-    box.scrollIntoView({behavior:'smooth', block:'center'});
-  }
-</script>
-</body>
-</html>
+    document.getE
