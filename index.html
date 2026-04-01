@@ -132,7 +132,16 @@
 
     .hamburger{display:none;background:none;border:none;font-size:1.4rem;cursor:pointer;padding:0.25rem;color:var(--dark)}
     .hidden-mobile{display:inline-flex}
-    @media(max-width:600px){
+    .nav-mobile{display:none}
+    .nav-icon-btn{background:none;border:none;font-size:1.4rem;cursor:pointer;padding:0.3rem;opacity:0.5;transition:opacity 0.2s}
+    .nav-icon-btn.active,.nav-icon-btn:hover{opacity:1}
+    .nav-icon-btn.cta{background:var(--rose-light);border-radius:8px;opacity:1}
+    @media(max-width:640px){
+    .nav-tabs{display:none}
+    .nav-actions{display:none}
+    .nav-mobile{display:flex;align-items:center;gap:0.25rem}
+    .logo-text{display:none}
+    
     .hamburger{display:block}
     .hidden-mobile{display:none!important}
     nav{padding:0 1rem}.nav-tabs{display:none}.hero{padding:3rem 1.25rem}.content{padding:2.5rem 1.25rem}.gracia-box{padding:1.75rem 1.25rem}.form-grid{grid-template-columns:1fr}.providers-section{padding:3rem 1.25rem}.preregister-form{padding:1.75rem 1.25rem}}
@@ -141,33 +150,29 @@
 <body>
 
 <nav>
-  <a class="nav-logo" href="#">
+  <a class="nav-logo" href="#" onclick="showSection('home')">
     <svg width="28" height="20" viewBox="0 0 120 80" fill="none">
       <circle cx="40" cy="40" r="28" stroke="#c8504a" stroke-width="7" fill="none"/>
       <circle cx="80" cy="40" r="28" stroke="#b8924a" stroke-width="7" fill="none"/>
     </svg>
-    Vivan los Novios
+    <span class="logo-text">Vivan los Novios</span>
   </a>
   <div class="nav-tabs">
     <button class="nav-tab active" onclick="showSection('home')">Inicio</button>
     <button class="nav-tab" onclick="showSection('novios')">Para Novios</button>
     <button class="nav-tab" onclick="showSection('proveedores')">Para Proveedores</button>
   </div>
-  <div style="display:flex;align-items:center;gap:0.5rem">
-    <button class="nav-cta hidden-mobile" onclick="irANotificacion()">Quiero saber más</button>
-    <button class="hamburger" onclick="toggleMobileMenu()" id="hamburgerBtn">☰</button>
+  <div class="nav-actions">
+    <button class="nav-cta" onclick="irANotificacion()">Quiero saber más</button>
+  </div>
+  <!-- Iconos móvil -->
+  <div class="nav-mobile">
+    <button class="nav-icon-btn active" onclick="showSection('home')" id="mobileHome" title="Inicio">🏠</button>
+    <button class="nav-icon-btn" onclick="showSection('novios')" id="mobileNovios" title="Novios">💑</button>
+    <button class="nav-icon-btn" onclick="showSection('proveedores')" id="mobileProv" title="Proveedores">🏢</button>
+    <button class="nav-icon-btn cta" onclick="irANotificacion()" title="Quiero saber más">🔔</button>
   </div>
 </nav>
-
-<!-- MENU MOVIL -->
-<div id="mobileMenu" style="display:none;position:fixed;top:60px;left:0;right:0;z-index:99;background:rgba(253,248,243,0.98);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:1rem;">
-  <div style="display:flex;flex-direction:column;gap:0.5rem;max-width:300px;margin:0 auto">
-    <button onclick="showSection('home');toggleMobileMenu()" style="padding:0.75rem 1rem;border-radius:12px;border:none;background:transparent;color:var(--body);font-size:1rem;cursor:pointer;text-align:left;font-family:'Inter',sans-serif">🏠 Inicio</button>
-    <button onclick="showSection('novios');toggleMobileMenu()" style="padding:0.75rem 1rem;border-radius:12px;border:none;background:transparent;color:var(--body);font-size:1rem;cursor:pointer;text-align:left;font-family:'Inter',sans-serif">💑 Para Novios</button>
-    <button onclick="showSection('proveedores');toggleMobileMenu()" style="padding:0.75rem 1rem;border-radius:12px;border:none;background:transparent;color:var(--body);font-size:1rem;cursor:pointer;text-align:left;font-family:'Inter',sans-serif">🏢 Para Proveedores</button>
-    <button onclick="irANotificacion();toggleMobileMenu()" style="padding:0.75rem 1rem;border-radius:12px;border:none;background:var(--rose);color:white;font-size:1rem;cursor:pointer;font-family:'Inter',sans-serif;font-weight:500;margin-top:0.25rem">Quiero saber más</button>
-  </div>
-</div>
 
 <!-- HOME -->
 <div id="home" class="section active">
