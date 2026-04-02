@@ -275,17 +275,6 @@
   </div>
 
   <div class="content">
-    <div class="gracia-box">
-      <h3>30 días gratis — acumulables con tu plan</h3>
-      <p>Al ser aprobado como proveedor, todos los planes incluyen 30 días de acceso gratuito. Esos días se suman a los meses contratados, no los pierdes.</p>
-      <div class="gracia-steps">
-        <div class="gracia-step"><div class="gracia-step-num">1</div><div>Te registras y completas tu perfil mientras esperas aprobación.</div></div>
-        <div class="gracia-step"><div class="gracia-step-num">2</div><div>Al ser aprobado, obtienes 30 días gratis automáticamente. Sin tarjeta.</div></div>
-        <div class="gracia-step"><div class="gracia-step-num">3</div><div>Cuando activas un plan, los 30 días se suman al período contratado.</div></div>
-        <div class="gracia-step"><div class="gracia-step-num">4</div><div>Apareces en el catálogo y empiezas a recibir consultas de parejas.</div></div>
-      </div>
-    </div>
-
     <div class="section-label">Planes</div>
     <h2 class="section-title">Elige el plan que más te acomoda</h2>
     <p class="section-sub">Todos los planes incluyen las mismas funcionalidades. La diferencia es solo la duración.</p>
@@ -312,14 +301,14 @@
         <div class="plan-free">+ días gratis según orden de registro</div>
       </div>
     </div>
-    <div style="background:var(--gold-light);border:1px solid rgba(184,146,74,0.25);border-radius:12px;padding:1rem 1.5rem;margin-bottom:2rem;text-align:center">
+    <div style="background:var(--gold-light);border:1px solid rgba(184,146,74,0.25);border-radius:12px;padding:1rem 1.5rem;margin-bottom:3rem;text-align:center">
       <p style="font-size:0.875rem;color:var(--body);line-height:1.6">🎁 <strong>Promoción de lanzamiento:</strong> hasta 120 días gratis según tu orden de registro. Los días se suman al plan que elijas. Después del lanzamiento: 30 días gratis estándar para todos.</p>
     </div>
   </div>
 
-
-    <!-- PROMOCIÓN LANZAMIENTO -->
-    <div style="background:linear-gradient(135deg,#1a1410 0%,#3d2020 100%);border-radius:20px;padding:2.5rem;margin:3rem 0;color:white;position:relative;overflow:hidden">
+  <!-- PROMOCIÓN LANZAMIENTO -->
+  <div style="max-width:1080px;margin:0 auto;padding:0 2rem 2rem">
+    <div style="background:linear-gradient(135deg,#1a1410 0%,#3d2020 100%);border-radius:20px;padding:2.5rem;color:white;position:relative;overflow:hidden">
       <div style="position:absolute;top:-10px;right:20px;font-size:7rem;opacity:0.06;font-family:'Playfair Display',serif;font-weight:700;pointer-events:none">★</div>
 
       <div style="text-align:center;margin-bottom:2rem">
@@ -335,14 +324,57 @@
           <div style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:#c9a96e">120 días</div>
           <div style="font-size:0.8rem;color:rgba(255,255,255,0.7);margin-top:0.2rem">gratis (4 meses)</div>
           <div style="font-size:0.75rem;color:rgba(255,255,255,0.5);margin-top:0.75rem;background:rgba(255,255,255,0.08);border-radius:999px;padding:0.3rem 0.75rem">Primeros 30 inscritos</div>
+          <div id="cupos1" style="margin-top:0.75rem;font-size:0.85rem;color:#c9a96e;font-weight:600">30 cupos disponibles</div>
+          <div style="margin-top:0.5rem;background:rgba(255,255,255,0.1);border-radius:999px;height:6px;overflow:hidden">
+            <div id="progreso1" style="background:#c9a96e;height:6px;border-radius:999px;width:0%;transition:width 0.8s ease"></div>
+          </div>
+        </div>
+        <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:16px;padding:1.5rem;text-align:center">
+          <div style="font-size:2rem;margin-bottom:0.5rem">🥈</div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:white">90 días</div>
+          <div style="font-size:0.8rem;color:rgba(255,255,255,0.7);margin-top:0.2rem">gratis (3 meses)</div>
+          <div style="font-size:0.75rem;color:rgba(255,255,255,0.5);margin-top:0.75rem;background:rgba(255,255,255,0.08);border-radius:999px;padding:0.3rem 0.75rem">Siguientes 10 inscritos</div>
+          <div id="cupos2" style="margin-top:0.75rem;font-size:0.85rem;color:white;font-weight:600">Se abre al completar nivel 1</div>
+          <div style="margin-top:0.5rem;background:rgba(255,255,255,0.1);border-radius:999px;height:6px;overflow:hidden">
+            <div id="progreso2" style="background:white;height:6px;border-radius:999px;width:0%;transition:width 0.8s ease"></div>
+          </div>
+        </div>
+        <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:1.5rem;text-align:center">
+          <div style="font-size:2rem;margin-bottom:0.5rem">🥉</div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:white">60 días</div>
+          <div style="font-size:0.8rem;color:rgba(255,255,255,0.7);margin-top:0.2rem">gratis (2 meses)</div>
+          <div style="font-size:0.75rem;color:rgba(255,255,255,0.5);margin-top:0.75rem;background:rgba(255,255,255,0.08);border-radius:999px;padding:0.3rem 0.75rem">Siguientes 10 inscritos</div>
+          <div id="cupos3" style="margin-top:0.75rem;font-size:0.85rem;color:white;font-weight:600">Se abre al completar nivel 2</div>
+          <div style="margin-top:0.5rem;background:rgba(255,255,255,0.1);border-radius:999px;height:6px;overflow:hidden">
+            <div id="progreso3" style="background:white;height:6px;border-radius:999px;width:0%;transition:width 0.8s ease"></div>
+          </div>
+        </div>
+      </div>
 
-    <!-- Beneficios + Formulario sobre fondo oscuro -->
+      <div style="text-align:center;margin-bottom:1.5rem">
+        <span style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:999px;padding:0.4rem 1.25rem;font-size:0.78rem;color:rgba(255,255,255,0.5)">🎁 Todos los demás: 30 días gratis al activar cualquier plan</span>
+      </div>
+
+      <!-- Pasos -->
+      <div style="border-top:1px solid rgba(255,255,255,0.1);padding-top:1.5rem">
+        <p style="font-size:0.8rem;color:rgba(255,255,255,0.45);text-align:center;margin-bottom:1rem;text-transform:uppercase;letter-spacing:0.1em">¿Cómo funciona?</p>
+        <div style="display:flex;flex-direction:column;gap:0.75rem">
+          <div style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.875rem;color:rgba(255,255,255,0.8)"><div style="width:24px;height:24px;border-radius:50%;background:var(--rose);color:white;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;flex-shrink:0;margin-top:1px">1</div><div>Completa el formulario de preregistro — tu lugar en la lista queda guardado con fecha y hora.</div></div>
+          <div style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.875rem;color:rgba(255,255,255,0.8)"><div style="width:24px;height:24px;border-radius:50%;background:var(--rose);color:white;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;flex-shrink:0;margin-top:1px">2</div><div>Al lanzar la plataforma te contactamos para activar tu cuenta.</div></div>
+          <div style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.875rem;color:rgba(255,255,255,0.8)"><div style="width:24px;height:24px;border-radius:50%;background:var(--rose);color:white;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;flex-shrink:0;margin-top:1px">3</div><div>Los días gratis según tu puesto se suman automáticamente al plan que elijas.</div></div>
+          <div style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.875rem;color:rgba(255,255,255,0.8)"><div style="width:24px;height:24px;border-radius:50%;background:var(--rose);color:white;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;flex-shrink:0;margin-top:1px">4</div><div>Apareces en el catálogo y empiezas a recibir consultas de parejas.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Beneficios + Formulario sobre fondo oscuro -->
   <div class="providers-section">
     <div class="providers-inner">
       <div class="providers-header">
         <div style="margin-bottom:1rem"><span style="background:rgba(201,169,110,0.2);border:1px solid rgba(201,169,110,0.4);color:#c9a96e;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;padding:0.4rem 1.2rem;border-radius:999px;">✦ Funcionalidades incluidas ✦</span></div>
-        <h2>Todo lo que incluye tu perfil</h2>
-        <p style="margin-top:0.75rem">Herramientas diseñadas para que destaquen entre cientos de parejas buscando al proveedor perfecto.</p>
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,3rem)">Todo lo que incluye tu perfil</h2>
+        <p style="color:rgba(255,255,255,0.7);font-weight:300;font-size:1.05rem;max-width:580px;margin:0.75rem auto 0;line-height:1.7">Herramientas diseñadas para que destaquen entre cientos de parejas buscando al proveedor perfecto.</p>
       </div>
 
       <div class="benefits-grid">
@@ -360,12 +392,12 @@
         <div class="benefit-item"><span class="benefit-icon">📊</span><div class="benefit-text"><strong>Panel de administración</strong>Dashboard propio con todas tus métricas, mensajes, galería y paquetes.</div></div>
       </div>
 
-      <!-- FORMULARIO PREREGISTRO -->
       <!-- URGENCIA -->
       <div id="msgUrgencia" style="background:rgba(200,80,74,0.15);border:1px solid rgba(200,80,74,0.4);border-radius:14px;padding:1.25rem 1.5rem;text-align:center;margin-bottom:1.5rem">
-        <p style="color:white;font-size:0.95rem;line-height:1.6" id="textoUrgencia">⏳ Cargando cupos disponibles...</p>
+        <p style="color:white;font-size:0.95rem;line-height:1.6" id="textoUrgencia">🔥 ¡Preregístrate ahora y obtén hasta 120 días gratis!</p>
       </div>
 
+      <!-- FORMULARIO PREREGISTRO -->
       <div class="preregister-form" id="formContainer">
         <h3>Preregistro de proveedor</h3>
         <p class="form-sub">Completa tus datos y te avisaremos cuando la plataforma esté lista. ¡Sin compromisos!</p>
