@@ -295,25 +295,21 @@
         <div class="plan-name">Básico</div>
         <div class="plan-price">$25.000</div>
         <div class="plan-period">por mes</div>
-        <div class="plan-free">+ meses gratis según orden de registro</div>
+        <div class="plan-free">+ 30 días gratis al inicio</div>
       </div>
       <div class="plan-card">
-        <div class="plan-badge-label">Semestral</div>
         <div class="plan-name">Semestral</div>
         <div class="plan-price">$130.000</div>
         <div class="plan-period">6 meses · ahorra 13%</div>
-        <div class="plan-free">+ meses gratis según orden de registro</div>
+        <div class="plan-free">+ 30 días gratis al inicio</div>
       </div>
       <div class="plan-card">
-        <div class="plan-badge-label">Anual</div>
+        <div class="plan-badge-label">Mejor valor</div>
         <div class="plan-name">Anual</div>
         <div class="plan-price">$220.000</div>
         <div class="plan-period">12 meses · ahorra 27%</div>
-        <div class="plan-free">+ meses gratis según orden de registro</div>
+        <div class="plan-free">+ 30 días gratis al inicio</div>
       </div>
-    </div>
-    <div style="background:var(--gold-light);border:1px solid rgba(184,146,74,0.25);border-radius:12px;padding:1rem 1.5rem;margin-bottom:2rem;text-align:center">
-      <p style="font-size:0.875rem;color:var(--body);line-height:1.6"><strong>Promoción exclusiva de lanzamiento</strong> — Los meses gratis aplican solo para los primeros 50 preregistros. Una vez completados los cupos, todos los nuevos proveedores recibirán <strong>30 días gratis</strong> al activar cualquier plan.</p>
     </div>
   </div>
 
@@ -342,6 +338,550 @@
       </div>
 
       <!-- FORMULARIO PREREGISTRO -->
+      <!-- URGENCIA -->
+      <div id="msgUrgencia" style="background:rgba(200,80,74,0.15);border:1px solid rgba(200,80,74,0.4);border-radius:14px;padding:1.25rem 1.5rem;text-align:center;margin-bottom:1.5rem">
+        <p style="color:white;font-size:0.95rem;line-height:1.6" id="textoUrgencia">⏳ Cargando cupos disponibles...</p>
+      </div>
+
+      <div class="preregister-form" id="formContainer">
+        <h3>Preregistro de proveedor</h3>
+        <p class="form-sub">Completa tus datos y te avisaremos cuando la plataforma esté lista. ¡Sin compromisos!</p>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Nombre del negocio *</label>
+            <input type="text" id="negocio" placeholder="Ej: Fotografía Momentos" required/>
+          </div>
+          <div class="form-group">
+            <label>Nombre de contacto *</label>
+            <input type="text" id="contacto" placeholder="Tu nombre completo" required/>
+          </div>
+          <div class="form-group">
+            <label>Email *</label>
+            <input type="email" id="emailProv" placeholder="tu@correo.cl" required/>
+          </div>
+          <div class="form-group">
+            <label>Teléfono / WhatsApp</label>
+            <input type="tel" id="telefono" placeholder="+56 9 1234 5678"/>
+          </div>
+          <div class="form-group">
+            <label>Categoría *</label>
+            <select id="categoria" required>
+              <option value="" disabled selected>Selecciona tu rubro</option>
+              <option>Fotografía y Video</option>
+              <option>Lugares y Salones</option>
+              <option>Catering y Banquetería</option>
+              <option>Música y Entretenimiento</option>
+              <option>Decoración y Florería</option>
+              <option>Vestidos y Trajes</option>
+              <option>Maquillaje y Peinado</option>
+              <option>Pastelería</option>
+              <option>Invitaciones</option>
+              <option>Transporte</option>
+              <option>Organización de Eventos</option>
+              <option>Otros Servicios</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Región</label>
+            <select id="region">
+              <option value="" disabled selected>Selecciona tu región</option>
+              <option>Región Metropolitana</option>
+              <option>Valparaíso</option>
+              <option>Biobío</option>
+              <option>La Araucanía</option>
+              <option>Los Lagos</option>
+              <option>O'Higgins</option>
+              <option>Maule</option>
+              <option>Coquimbo</option>
+              <option>Antofagasta</option>
+              <option>Atacama</option>
+              <option>Tarapacá</option>
+              <option>Arica y Parinacota</option>
+              <option>Ñuble</option>
+              <option>Los Ríos</option>
+              <option>Aysén</option>
+              <option>Magallanes</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label>Cuéntanos brevemente sobre tu negocio</label>
+            <textarea id="descripcion" placeholder="Describe qué ofreces, años de experiencia, ciudades donde trabajas..."></textarea>
+          </div>
+          <div class="form-group full">
+            <label>Plan de interés</label>
+            <select id="plan">
+              <option value="" disabled selected>¿Qué plan te interesa?</option>
+              <option>Mensual — $25.000/mes</option>
+              <option>Semestral — $130.000 (6 meses)</option>
+              <option>Anual — $220.000 (12 meses)</option>
+              <option>Aún no lo sé</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn-submit" id="btnSubmit" onclick="enviarFormProveedor()">💍 Quiero preregistrarme gratis</button>
+        <p class="form-note-dark">Al preregistrarte no adquieres ningún compromiso de pago. Solo te avisaremos cuando la plataforma esté lista.</p>
+      </div>
+
+      <div class="success-box" id="successBox">
+        <div style="font-size:4rem;margin-bottom:1rem">💍</div>
+        <h3>¡Preregistro exitoso!</h3>
+        <p>Gracias por confiar en Vivan los Novios. Te contactaremos pronto con todos los detalles del lanzamiento.<br/><br/>¡Prepara tus mejores fotos! 📸</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div style="margin-bottom:0.75rem">
+    <svg width="36" height="24" viewBox="0 0 120 80" fill="none">
+      <circle cx="40" cy="40" r="26" stroke="#c8504a" stroke-width="6" fill="none" opacity="0.4"/>
+      <circle cx="80" cy="40" r="26" stroke="#b8924a" stroke-width="6" fill="none" opacity="0.4"/>
+    </svg>
+  </div>
+  <p>Creado con <span class="heart">♥</span> en Chile &nbsp;·&nbsp; Vivan los Novios &nbsp;·&nbsp; <span id="year"></span></p>
+  <p style="margin-top:0.4rem;font-size:0.78rem;opacity:0.6"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f0939f9e849193849fb0869986919e9c9f839e9f86999f83de939c">[email&#160;protected]</a></p>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyEpGfqk8uyganuoQEAcL26h_C-UrRmnNQTs6JS8to11MYGx_OkToUhpEzFDkYSPwna/exec';
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  function irANotificacion() {
+    showSection('home');
+    setTimeout(function() {
+      var el = document.getElementById('emailCapture');
+      if (el) el.scrollIntoView({behavior:'smooth'});
+    }, 400);
+  }
+
+  function toggleMobileMenu() {
+    var menu = document.getElementById('mobileMenu');
+    var btn = document.getElementById('hamburgerBtn');
+    if (menu.style.display === 'none' || menu.style.display === '') {
+      menu.style.display = 'block';
+      btn.textContent = '✕';
+    } else {
+      menu.style.display = 'none';
+      btn.textContent = '☰';
+    }
+  }
+
+  function showSection(id) {
+    document.querySelectorAll('.section').forEach(function(s) { s.classList.remove('active'); });
+    document.querySelectorAll('.nav-tab').forEach(function(t) { t.classList.remove('active'); });
+    document.getElementById(id).classList.add('active');
+    var tabs = {home:0, novios:1, proveedores:2};
+    document.querySelectorAll('.nav-tab')[tabs[id]].classList.add('active');
+    window.scrollTo({top:0, behavior:'smooth'});
+    var menu = document.getElementById('mobileMenu');
+    if (menu) menu.style.display = 'none';
+    var btn = document.getElementById('hamburgerBtn');
+    if (btn) btn.textContent = '☰';
+  }
+
+  async function registrarEmail(inputId, msgId, btnId, tipo) {
+    var email = document.getElementById(inputId).value.trim();
+    if (!email || !email.includes('@')) {
+      document.getElementById(inputId).focus();
+      return;
+    }
+    var btn = document.getElementById(btnId);
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+    try {
+      await fetch(SCRIPT_URL, {
+        method: 'POST', mode: 'no-cors',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({email: email, tipo: tipo, fecha: new Date().toLocaleString('es-CL')})
+      });
+    } catch(e) {}
+    var msg = document.getElementById(msgId);
+    msg.textContent = '¡Anotado! Te avisamos cuando lancemos.';
+    msg.style.display = 'block';
+    document.getElementById(inputId).value = '';
+    document.getElementById(inputId).placeholder = 'Registrado ✓';
+    document.getElementById(inputId).disabled = true;
+    btn.textContent = '✓ Registrado';
+  }
+
+  async function enviarFormProveedor() {
+    var negocio   = document.getElementById('negocio').value.trim();
+    var contacto  = document.getElementById('contacto').value.trim();
+    var email     = document.getElementById('emailProv').value.trim();
+    var categoria = document.getElementById('categoria').value;
+    if (!negocio || !contacto || !email || !categoria) {
+      alert('Por favor completa los campos obligatorios (*)');
+      return;
+    }
+    if (!email.includes('@')) { alert('Por favor ingresa un email válido'); return; }
+    var btn = document.getElementById('btnSubmit');
+    btn.disabled = true;
+    btn.textContent = '⏳ Enviando...';
+    var datos = {
+      email: email, tipo: 'proveedor', nombre: contacto, negocio: negocio,
+      categoria: categoria,
+      region:      document.getElementById('region').value,
+      telefono:    document.getElementById('telefono').value.trim(),
+      plan:        document.getElementById('plan').value,
+      descripcion: document.getElementById('descripcion').value.trim(),
+      fecha:       new Date().toLocaleString('es-CL')
+    };
+    try {
+      await fetch(SCRIPT_URL, {
+        method: 'POST', mode: 'no-cors',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify(datos)
+      });
+    } catch(e) {}
+    document.getElementById('formContainer').style.display = 'none';
+    var box = document.getElementById('successBox');
+    box.style.display = 'block';
+    box.scrollIntoView({behavior:'smooth', block:'center'});
+  }
+</script><script>
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyEpGfqk8uyganuoQEAcL26h_C-UrRmnNQTs6JS8to11MYGx_OkToUhpEzFDkYSPwna/exec';
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  function irANotificacion() {
+    showSection('home');
+    setTimeout(function() {
+      var el = document.getElementById('emailCapture');
+      if (el) el.scrollIntoView({behavior:'smooth'});
+    }, 400);
+  }
+
+  function toggleMobileMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const btn = document.getElementById('hamburgerBtn');
+    if (menu.style.display === 'none') {
+      menu.style.display = 'block';
+      btn.textContent = '✕';
+    } else {
+      menu.style.display = 'none';
+      btn.textContent = '☰';
+    }
+  }
+
+  function showSection(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    const tabs = {home:0,novios:1,proveedores:2};
+    document.querySelectorAll('.nav-tab')[tabs[id]].classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+
+  async function registrarEmail(inputId, msgId, btnId, tipo) {
+    const email = document.getElementById(inputId).value.trim();
+    if (!email || !email.includes('@')) {
+      document.getElementById(inputId).focus();
+      return;
+    }
+    const btn = document.getElementById(btnId);
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+
+    try {
+      await fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({ email, tipo, fecha: new Date().toLocaleString('es-CL') })
+      });
+    } catch(e) {}
+
+    const msg = document.getElementById(msgId);
+    msg.textContent = '¡Anotado! Te avisamos cuando lancemos.';
+    msg.style.display = 'block';
+    document.getElementById(inputId).value = '';
+    document.getElementById(inputId).placeholder = 'Registrado ✓';
+    document.getElementById(inputId).disabled = true;
+    btn.textContent = '✓ Registrado';
+  }
+
+  async function enviarFormProveedor() {
+    const negocio  = document.getElementById('negocio').value.trim();
+    const contacto = document.getElementById('contacto').value.trim();
+    const email    = document.getElementById('emailProv').value.trim();
+    const categoria= document.getElementById('categoria').value;
+
+    if (!negocio || !contacto || !email || !categoria) {
+      alert('Por favor completa los campos obligatorios (*)');
+      return;
+    }
+    if (!email.includes('@')) {
+      alert('Por favor ingresa un email válido');
+      return;
+    }
+
+    const btn = document.getElementById('btnSubmit');
+    btn.disabled = true;
+    btn.textContent = '⏳ Enviando...';
+
+    const datos = {
+      email,
+      tipo: 'proveedor',
+      nombre: contacto,
+      negocio,
+      categoria,
+      region:      document.getElementById('region').value,
+      telefono:    document.getElementById('telefono').value.trim(),
+      plan:        document.getElementById('plan').value,
+      descripcion: document.getElementById('descripcion').value.trim(),
+      fecha:       new Date().toLocaleString('es-CL'),
+    };
+
+    try {
+      await fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify(datos)
+      });
+    } catch(e) {}
+
+    document.get    <!-- PROMOCIÓN LANZAMIENTO -->
+    <div style="background:linear-gradient(135deg,#1a1410 0%,#3d2020 100%);border-radius:20px;padding:2.5rem;margin:3rem 0;color:white;position:relative;overflow:hidden">
+      <div style="position:absolute;top:-10px;right:20px;font-size:7rem;opacity:0.06;font-family:'Playfair Display',serif;font-weight:700;pointer-events:none">★</div>
+
+      <div style="text-align:center;margin-bottom:2rem">
+        <span style="background:rgba(201,169,110,0.25);border:1px solid rgba(201,169,110,0.4);color:#c9a96e;font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;padding:0.4rem 1.2rem;border-radius:999px">✦ Promoción exclusiva de lanzamiento ✦</span>
+        <h3 style="font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3vw,2rem);margin:1rem 0 0.5rem">Preregístrate y gana días gratis</h3>
+        <p style="color:rgba(255,255,255,0.65);font-weight:300;max-width:500px;margin:0 auto;font-size:0.95rem">Cuanto antes te registres, más días gratis obtienes. Esta promoción es <strong style="color:rgba(255,255,255,0.9)">exclusiva del lanzamiento</strong> — una vez completados los 50 cupos, todos recibirán 30 días gratis estándar.</p>
+      </div>
+
+      <!-- Tres niveles con contador -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-bottom:1.5rem">
+        <div style="background:rgba(201,169,110,0.15);border:1.5px solid rgba(201,169,110,0.5);border-radius:16px;padding:1.5rem;text-align:center">
+          <div style="font-size:2rem;margin-bottom:0.5rem">🥇</div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:#c9a96e">120 días</div>
+          <div style="font-size:0.8rem;color:rgba(255,255,255,0.7);margin-top:0.2rem">gratis (4 meses)</div>
+          <div style="font-size:0.75rem;color:rgba(255,255,255,0.5);margin-top:0.75rem;background:rgba(255,255,255,0.08);border-radius:999px;padding:0.3rem 0.75rem">Primeros 30 inscritos</div>
+          <div id="cupos1" style="margin-top:0.75rem;font-size:0.85rem;color:#c9a96e;font-weight:600">Cargando...</div>
+          <div style="margin-top:0.5rem;background:rgba(255,255,255,0.1);border-radius:999px;height:6px;overflow:hidden">
+            <div id="progreso1" style="background:#c9a96e;height:6px;border-radius:999px;width:0%;transition:width 0.8s ease"></div>
+          </div>
+        </div>
+        <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:16px;padding:1.5rem;text-align:center">
+          <div style="font-size:2rem;margin-bottom:0.5rem">🥈</div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:white">90 días</div>
+          <div style="font-size:0.8rem;color:rgba(255,255,255,0.7);margin-top:0.2rem">gratis (3 meses)</div>
+          <div style="font-size:0.75rem;color:rgba(255,255,255,0.5);margin-top:0.75rem;background:rgba(255,255,255,0.08);border-radius:999px;padding:0.3rem 0.75rem">Siguientes 10 inscritos</div>
+          <div id="cupos2" style="margin-top:0.75rem;font-size:0.85rem;color:white;font-weight:600">Cargando...</div>
+          <div style="margin-top:0.5rem;background:rgba(255,255,255,0.1);border-radius:999px;height:6px;overflow:hidden">
+            <div id="progreso2" style="background:white;height:6px;border-radius:999px;width:0%;transition:width 0.8s ease"></div>
+          </div>
+        </div>
+        <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:1.5rem;text-align:center">
+          <div style="font-size:2rem;margin-bottom:0.5rem">🥉</div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:white">60 días</div>
+          <div style="font-size:0.8rem;color:rgba(255,255,255,0.7);margin-top:0.2rem">gratis (2 meses)</div>
+          <div style="font-size:0.75rem;color:rgba(255,255,255,0.5);margin-top:0.75rem;background:rgba(255,255,255,0.08);border-radius:999px;padding:0.3rem 0.75rem">Siguientes 10 inscritos</div>
+          <div id="cupos3" style="margin-top:0.75rem;font-size:0.85rem;color:white;font-weight:600">Cargando...</div>
+          <div style="margin-top:0.5rem;background:rgba(255,255,255,0.1);border-radius:999px;height:6px;overflow:hidden">
+            <div id="progreso3" style="background:white;height:6px;border-radius:999px;width:0%;transition:width 0.8s ease"></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-bottom:1.5rem">
+        <span style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:999px;padding:0.4rem 1.25rem;font-size:0.78rem;color:rgba(255,255,255,0.5)">🎁 Todos los demás: 30 días gratis al activar cualquier plan</span>
+      </div>
+
+      <!-- Pasos -->
+      <div style="border-top:1px solid rgba(255,255,255,0.1);padding-top:1.5rem">
+        <p style="font-size:0.8rem;color:rgba(255,255,255,0.45);text-align:center;margin-bottom:1rem;text-transform:uppercase;letter-spacing:0.1em">¿Cómo funciona?</p>
+        <div style="display:flex;flex-direction:column;gap:0.75rem">
+          <div style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.875rem;color:rgba(255,255,255,0.8)"><div style="width:24px;height:24px;border-radius:50%;background:var(--rose);color:white;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;flex-shrink:0;margin-top:1px">1</div><div>Completa el formulario de preregistro — tu lugar en la lista queda guardado con fecha y hora.</div></div>
+          <div style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.875rem;color:rgba(255,255,255,0.8)"><div style="width:24px;height:24px;border-radius:50%;background:var(--rose);color:white;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;flex-shrink:0;margin-top:1px">2</div><div>Al lanzar la plataforma te contactamos para activar tu cuenta.</div></div>
+          <div style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.875rem;color:rgba(255,255,255,0.8)"><div style="width:24px;height:24px;border-radius:50%;background:var(--rose);color:white;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;flex-shrink:0;margin-top:1px">3</div><div>Los días gratis según tu puesto se suman automáticamente al plan que elijas.</div></div>
+          <div style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.875rem;color:rgba(255,255,255,0.8)"><div style="width:24px;height:24px;border-radius:50%;background:var(--rose);color:white;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;flex-shrink:0;margin-top:1px">4</div><div>Apareces en el catálogo y empiezas a recibir consultas de parejas.</div></div>
+        </div>
+      </div>
+    </div>
+  <div class="nav-actions">
+    <button class="nav-cta" onclick="irANotificacion()">Quiero saber más</button>
+  </div>
+  <!-- Iconos móvil -->
+  <div class="nav-mobile">
+    <button class="nav-icon-btn active" onclick="showSection('novios')" id="mobileNovios" title="Novios">💑</button>
+    <button class="nav-icon-btn" onclick="showSection('proveedores')" id="mobileProv" title="Proveedores">🏢</button>
+    <button class="nav-icon-btn cta" onclick="irANotificacion()" title="Quiero saber más">🔔</button>
+  </div>
+</nav>
+
+<!-- HOME -->
+<div id="home" class="section active">
+  <div class="hero">
+    <div class="badge">✦ Próximamente en 2026 ✦</div>
+    <h1>La plataforma que<br/>tu boda <em>merece</em></h1>
+    <p>Todo lo que necesitas para organizar el día más importante de tu vida, en un solo lugar. Gratis para novios. Con los mejores proveedores de Chile.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="showSection('novios')">Soy novio/a — ver más</button>
+      <button class="btn-secondary" onclick="showSection('proveedores')">Soy proveedor</button>
+    </div>
+    <div class="coming-tag">Lanzamiento en los próximos meses de 2026</div>
+  </div>
+
+  <div class="content">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start">
+      <div>
+        <div class="section-label">Para novios</div>
+        <h2 class="section-title" style="font-size:1.6rem">Organiza tu boda sin estrés</h2>
+        <p style="color:var(--muted);font-weight:300;font-size:0.925rem;line-height:1.75;margin-bottom:1.25rem">Invitaciones digitales, confirmación de asistencia, lista de regalos online, editor de mesas, votaciones con invitados, búsqueda de proveedores y mensajes directos. Todo gratis, siempre.</p>
+        <button class="btn-primary" style="font-size:0.875rem;padding:0.7rem 1.5rem" onclick="showSection('novios')">Ver todo para novios →</button>
+      </div>
+      <div>
+        <div class="section-label">Para proveedores</div>
+        <h2 class="section-title" style="font-size:1.6rem">Llega a más parejas</h2>
+        <p style="color:var(--muted);font-weight:300;font-size:0.925rem;line-height:1.75;margin-bottom:1.25rem">Perfil profesional, galería de fotos y videos, paquetes de servicios, mensajes directos, valoraciones de clientes y alertas en tiempo real. Con 30 días gratis al activar cualquier plan.</p>
+        <button class="btn-secondary" style="font-size:0.875rem;padding:0.7rem 1.5rem" onclick="showSection('proveedores')">Ver todo para proveedores →</button>
+      </div>
+    </div>
+
+    <div class="email-section" id="emailCapture" style="margin-top:4rem">
+      <div style="margin-bottom:1rem">
+        <svg width="40" height="28" viewBox="0 0 120 80" fill="none">
+          <circle cx="40" cy="40" r="26" stroke="#c8504a" stroke-width="6" fill="none" opacity="0.6"/>
+          <circle cx="80" cy="40" r="26" stroke="#b8924a" stroke-width="6" fill="none" opacity="0.6"/>
+        </svg>
+      </div>
+      <h3>Sé el primero en saber cuándo abrimos</h3>
+      <p>Déjanos tu correo y te avisaremos en cuanto la plataforma esté disponible.</p>
+      <div class="email-form">
+        <input type="email" id="emailHome" placeholder="tu@correo.cl"/>
+        <button class="btn-notify" id="btnHome" onclick="registrarEmail('emailHome','msgHome','btnHome','novio')">Avisarme</button>
+      </div>
+      <p class="success-msg" id="msgHome"></p>
+      <p class="form-note">Sin spam. Solo te escribimos cuando la plataforma esté lista.</p>
+    </div>
+  </div>
+</div>
+
+<!-- NOVIOS -->
+<div id="novios" class="section">
+  <div class="hero" style="min-height:50vh;padding:3.5rem 2rem">
+    <div class="badge">✦ Para novios — Gratis ✦</div>
+    <h1 style="font-size:clamp(2.2rem,5vw,4rem)">Tu boda,<br/><em>perfectamente organizada</em></h1>
+    <p>Desde las invitaciones hasta el último detalle. Todo en un solo lugar, completamente gratis para las parejas.</p>
+  </div>
+
+  <div class="content">
+    <div class="section-label">Gestión completa</div>
+    <h2 class="section-title">Todo lo que necesitas para tu gran día</h2>
+    <p class="section-sub">Desarrollado pensando en cada detalle de la planificación de una boda en Chile.</p>
+
+    <div class="grid">
+      <div class="card"><span class="card-icon">💌</span><h3>Invitaciones digitales</h3><p>Crea y envía invitaciones personalizadas con el diseño de tu boda. Comparte el link por WhatsApp o redes sociales.</p></div>
+      <div class="card"><span class="card-icon">✅</span><h3>Confirmación de asistencia (RSVP)</h3><p>Tus invitados confirman con un click. Lleva el control de quién asiste, quién no puede y quién trae acompañante.</p></div>
+      <div class="card"><span class="card-icon">🎁</span><h3>Lista de regalos online</h3><p>Agrega los regalos que sueñas. Tus invitados compran directamente desde el link, desde cualquier parte del mundo.</p></div>
+      <div class="card"><span class="card-icon">🪑</span><h3>Editor de mesas visual</h3><p>Distribuye a tus invitados arrastrando y soltando. Ve en tiempo real cómo quedará el salón. Incluye acompañantes con nombre.</p></div>
+      <div class="card"><span class="card-icon">🗳️</span><h3>Votaciones para invitados</h3><p>Deja que tus invitados elijan la música, el menú o la decoración. Comparte la votación y ve los resultados en vivo.</p></div>
+      <div class="card"><span class="card-icon">🔍</span><h3>Catálogo de proveedores</h3><p>Busca fotógrafos, banqueteros, decoradores y más. Filtra por categoría, ciudad y precio. Lee reseñas reales de parejas.</p></div>
+      <div class="card"><span class="card-icon">💬</span><h3>Mensajes con proveedores</h3><p>Contacta directamente a cada proveedor desde la plataforma. Historial de conversaciones organizado en un solo lugar.</p></div>
+      <div class="card"><span class="card-icon">❤️</span><h3>Favoritos</h3><p>Guarda los proveedores que más te gustan y compara antes de decidir. Accede a tu lista en cualquier momento.</p></div>
+      <div class="card"><span class="card-icon">🔔</span><h3>Notificaciones en tiempo real</h3><p>Recibe alertas cuando un proveedor responde tu mensaje, cuando llega un nuevo RSVP o cuando alguien regala algo.</p></div>
+    </div>
+
+    <div class="divider"><div class="divider-line"></div><div class="divider-ornament">◇</div><div class="divider-line"></div></div>
+
+    <div style="background:var(--rose-light);border-radius:16px;padding:2rem;border:1px solid rgba(200,80,74,0.15);text-align:center">
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--dark);margin-bottom:0.5rem">100% gratis para novios, siempre</h3>
+      <p style="color:var(--muted);font-weight:300;font-size:0.9rem;max-width:480px;margin:0 auto">No hay planes de pago para parejas. Todo el portal está disponible sin costo para organizar tu boda.</p>
+    </div>
+
+    <div class="email-section" style="margin-top:3rem">
+      <h3>¿Quieres que te avisemos cuando abramos?</h3>
+      <p>Déjanos tu correo y serás de los primeros en acceder cuando la plataforma esté lista.</p>
+      <div class="email-form">
+        <input type="email" id="emailNovios" placeholder="tu@correo.cl"/>
+        <button class="btn-notify" id="btnNovios" onclick="registrarEmail('emailNovios','msgNovios','btnNovios','novio')">Avisarme</button>
+      </div>
+      <p class="success-msg" id="msgNovios"></p>
+      <p class="form-note">Sin spam. Solo te escribimos cuando la plataforma esté lista.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PROVEEDORES -->
+<div id="proveedores" class="section">
+  <div class="hero" style="min-height:50vh;padding:3.5rem 2rem">
+    <div class="badge">✦ Para proveedores ✦</div>
+    <h1 style="font-size:clamp(2.2rem,5vw,4rem)">Más clientes,<br/><em>menos esfuerzo</em></h1>
+    <p>Crea tu perfil profesional y conecta con cientos de parejas que buscan exactamente lo que ofreces. Lanzamiento en los próximos meses de 2026.</p>
+  </div>
+
+  <div class="content">
+    <div class="gracia-box">
+      <h3>30 días gratis — acumulables con tu plan</h3>
+      <p>Al ser aprobado como proveedor, todos los planes incluyen 30 días de acceso gratuito. Esos días se suman a los meses contratados, no los pierdes.</p>
+      <div class="gracia-steps">
+        <div class="gracia-step"><div class="gracia-step-num">1</div><div>Te registras y completas tu perfil mientras esperas aprobación.</div></div>
+        <div class="gracia-step"><div class="gracia-step-num">2</div><div>Al ser aprobado, obtienes 30 días gratis automáticamente. Sin tarjeta.</div></div>
+        <div class="gracia-step"><div class="gracia-step-num">3</div><div>Cuando activas un plan, los 30 días se suman al período contratado.</div></div>
+        <div class="gracia-step"><div class="gracia-step-num">4</div><div>Apareces en el catálogo y empiezas a recibir consultas de parejas.</div></div>
+      </div>
+    </div>
+
+    <div class="section-label">Planes</div>
+    <h2 class="section-title">Elige el plan que más te acomoda</h2>
+    <p class="section-sub">Todos los planes incluyen las mismas funcionalidades. La diferencia es solo la duración.</p>
+    <div class="plans-grid">
+      <div class="plan-card">
+        <div class="plan-badge-label">Mensual</div>
+        <div class="plan-name">Básico</div>
+        <div class="plan-price">$25.000</div>
+        <div class="plan-period">por mes</div>
+        <div class="plan-free">+ 30 días gratis al inicio</div>
+      </div>
+      <div class="plan-card">
+        <div class="plan-name">Semestral</div>
+        <div class="plan-price">$130.000</div>
+        <div class="plan-period">6 meses · ahorra 13%</div>
+        <div class="plan-free">+ 30 días gratis al inicio</div>
+      </div>
+      <div class="plan-card">
+        <div class="plan-badge-label">Mejor valor</div>
+        <div class="plan-name">Anual</div>
+        <div class="plan-price">$220.000</div>
+        <div class="plan-period">12 meses · ahorra 27%</div>
+        <div class="plan-free">+ 30 días gratis al inicio</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Beneficios + Formulario sobre fondo oscuro -->
+  <div class="providers-section">
+    <div class="providers-inner">
+      <div class="providers-header">
+        <div style="margin-bottom:1rem"><span style="background:rgba(201,169,110,0.2);border:1px solid rgba(201,169,110,0.4);color:#c9a96e;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;padding:0.4rem 1.2rem;border-radius:999px;">✦ Funcionalidades incluidas ✦</span></div>
+        <h2>Todo lo que incluye tu perfil</h2>
+        <p style="margin-top:0.75rem">Herramientas diseñadas para que destaquen entre cientos de parejas buscando al proveedor perfecto.</p>
+      </div>
+
+      <div class="benefits-grid">
+        <div class="benefit-item"><span class="benefit-icon">📋</span><div class="benefit-text"><strong>Perfil completo</strong>Nombre, descripción, categoría, región, ciudad, sitio web, Instagram, Facebook y WhatsApp.</div></div>
+        <div class="benefit-item"><span class="benefit-icon">📸</span><div class="benefit-text"><strong>Hasta 30 fotografías</strong>Galería profesional que enamora a las parejas y muestra tu mejor trabajo.</div></div>
+        <div class="benefit-item"><span class="benefit-icon">🎬</span><div class="benefit-text"><strong>Hasta 3 videos</strong>Comparte videos de tus trabajos para generar confianza y diferenciarte.</div></div>
+        <div class="benefit-item"><span class="benefit-icon">💼</span><div class="benefit-text"><strong>Paquetes ilimitados</strong>Crea todos los paquetes que necesitas con nombre, precio, descripción e ítems incluidos.</div></div>
+        <div class="benefit-item"><span class="benefit-icon">💬</span><div class="benefit-text"><strong>Chat con parejas</strong>Responde consultas en tiempo real. Historial completo de conversaciones.</div></div>
+        <div class="benefit-item"><span class="benefit-icon">🔔</span><div class="benefit-text"><strong>Alertas en tiempo real</strong>Notificaciones cuando recibes un mensaje o una pareja te agrega a favoritos.</div></div>
+        <div class="benefit-item"><span class="benefit-icon">⭐</span><div class="benefit-text"><strong>Valoraciones y reseñas</strong>Las parejas te califican y tú puedes responder públicamente a cada una.</div></div>
+        <div class="benefit-item"><span class="benefit-icon">❤️</span><div class="benefit-text"><strong>Ver quién te guarda</strong>Sabe cuántas parejas te agregaron a favoritos y cuándo.</div></div>
+        <div class="benefit-item"><span class="benefit-icon">📍</span><div class="benefit-text"><strong>Mapa y ubicación</strong>Aparece en el mapa de tu región para que las parejas te encuentren fácilmente.</div></div>
+        <div class="benefit-item"><span class="benefit-icon">📊</span><div class="benefit-text"><strong>Estadísticas</strong>Cuántas veces vieron tu perfil, mensajes recibidos y parejas que te guardaron.</div></div>
+        <div class="benefit-item"><span class="benefit-icon">💡</span><div class="benefit-text"><strong>Tips para más clientes</strong>Guías para optimizar tu perfil y aumentar las consultas que recibes.</div></div>
+        <div class="benefit-item"><span class="benefit-icon">📊</span><div class="benefit-text"><strong>Panel de administración</strong>Dashboard propio con todas tus métricas, mensajes, galería y paquetes.</div></div>
+      </div>
+
+      <!-- FORMULARIO PREREGISTRO -->
+      <!-- URGENCIA -->
+      <div id="msgUrgencia" style="background:rgba(200,80,74,0.15);border:1px solid rgba(200,80,74,0.4);border-radius:14px;padding:1.25rem 1.5rem;text-align:center;margin-bottom:1.5rem">
+        <p style="color:white;font-size:0.95rem;line-height:1.6" id="textoUrgencia">⏳ Cargando cupos disponibles...</p>
+      </div>
+
       <div class="preregister-form" id="formContainer">
         <h3>Preregistro de proveedor</h3>
         <p class="form-sub">Completa tus datos y te avisaremos cuando la plataforma esté lista. ¡Sin compromisos!</p>
